@@ -1,10 +1,11 @@
-import type {ChangeEvent, SubmitEvent} from "react";
+import type {ChangeEvent, SubmitEvent, RefObject} from "react";
 import type {DailyLog} from "../types";
 
 type DailyLogFormProps = {
     dailyLog: DailyLog;
     isSaving: boolean;
     saveError: string | null;
+    studyInputRef: RefObject<HTMLInputElement | null>;
     onLogChange: (event: ChangeEvent<HTMLInputElement>) => void;
     onSubmit: (event: SubmitEvent<HTMLFormElement>) => void;
 };

@@ -1,4 +1,4 @@
-import {useEffect, useState, type ChangeEvent, type SubmitEvent} from 'react';
+import {useEffect, useState, useRef, type ChangeEvent, type SubmitEvent} from 'react';
 import { supabase } from "./lib/supabase";
 import {type DailyLog, type SavedDailyLog} from "./types";
 import {DailyLogForm} from "./components/DailyLogForm";
@@ -49,6 +49,8 @@ export default function App() {
 
   const [logs, setLogs] = useState<SavedDailyLog[]>([]);
   const [loadError, setLoadError] = useState<string | null>(null);
+
+  const studyInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     async function loadLogs() {
@@ -107,6 +109,7 @@ export default function App() {
     }
 
     setSavedLog(dailyLog);
+    studyInputRef.current?.focus();
   }
 
   return (
@@ -118,6 +121,7 @@ export default function App() {
         dailyLog={dailyLog}
         isSaving={isSaving}
         saveError={saveError}
+        studyInputRef={studyInputRef}
         onLogChange={handleLogChange}
         onSubmit={handleSubmit}
       />
