@@ -1,29 +1,14 @@
 import {useEffect, useState, type ChangeEvent, type SubmitEvent} from 'react';
 import { supabase } from "./lib/supabase";
-
-type DailyLog = {
-  studyHours: string;
-  screenTimeMinutes: string;
-  activityName: string;
-  activityMinutes: string;
-};
+import {type DailyLog, type SavedDailyLog} from "./types";
+import {DailyLogForm} from "./components/DailyLogForm";
+import {LogHistory} from "./components/LogHistory";
 
 const emptyDailyLog: DailyLog = {
   studyHours: "",
   screenTimeMinutes: "",
   activityName: "",
   activityMinutes: "",
-};
-
-type SavedDailyLog = {
-  id: string;
-  log_date: string;
-  studyHours: number;
-  screenTimeMinutes: number;
-  activityName: string;
-  activityMinutes: number;
-  xp: number;
-  created_at: string;
 };
 
 /**
@@ -129,64 +114,13 @@ export default function App() {
       <h1>My Life Index</h1>
       <p>Log your day and earn XP for positive habits.</p>
 
-      <form onSubmit={handleSubmit}>
-
-        <div>
-          <label htmlFor="study-hours">Study hours</label>
-
-          <input
-          id="study-hours"
-          name="studyHours"
-          type="number"
-          min="0"
-          max="24"
-          step="0.5"
-          value={dailyLog.studyHours}
-          onChange={handleLogChange}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="screen-time">Screen time in minutes</label>
-          <input 
-          id="screen-time"
-          name="screenTimeMinutes"
-          type="number"
-          min="0"
-          value={dailyLog.screenTimeMinutes}
-          onChange={handleLogChange}
-          />
-        </div>
-
-        <div>
-          <label>Activity time in minutes and activity name</label>
-
-          <input 
-          id="activity-minutes"
-          name="activityMinutes"
-          type="number"
-          min="0"
-          value={dailyLog.activityMinutes}
-          onChange={handleLogChange}
-          />
-
-          <input 
-          id="activity-name"
-          name="activityName"
-          type="text"
-          value={dailyLog.activityName}
-          onChange={handleLogChange}
-          />
-
-
-        </div>
-
-
-        <button type="submit" disabled={isSaving}>
-          {isSaving ? "Saving..." : "Save daily log"}
-        </button>
-        {saveError !== null && <p>Could not save: {saveError}</p>}
-      </form>
+      <DailyLogForm
+        dailyLog={dailyLog}
+        isSaving={isSaving}
+        saveError={saveError}
+        onLogChange={handleLogChange}
+        onSubmit={handleSubmit}
+      />
 
 
       {savedLog != null && ( 
@@ -202,25 +136,7 @@ export default function App() {
         </section>
       )}
 
-      <section>
-        <h2>Previous logs</h2>
-
-        {loadError != null && <p>Could not load logs: {loadError} </p>}
-
-        {logs.length === 0 && loadError === null && <p>No saved logs yet.</p>}
-
-        {logs.map((log) => (
-          <article key={log.id}>
-            <h3>{log.log_date}</h3>
-            <p>Study hours: {log.studyHours || 0} hours</p>
-            <p>Screen time: {log.screenTimeMinutes || 0} minutes</p>
-            <p>Activity name: {log.activityName || ""} </p>
-            <p>Activity minutes: {log.activityMinutes || 0 } </p>
-            <p>XP earned: {log.xp}</p>
-          </article>
-        ))}
-      </section>
-
+      <LogHistory logs={logs} loadError={loadError}/>
 
     </main>
   )
