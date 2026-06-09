@@ -19,6 +19,12 @@ const emptyDailyLog: DailyLog = {
  * Later, these rules should be replaced with a more advanced algorithm.
  */
 function calculateXP(log: DailyLog): number {
+
+  // Family, work, education, religious community
+  // How many hours have you spent with family?
+  // How many hours at work? Should there be a limit after which more work is less XP?
+  // Happiness and Life Satisfaction, Physical and Mental Health, Meaning and Purpose, Character and Virtue
+
   const studyHours = Number(log.studyHours);
   const screenTimeMinutes = Number(log.screenTimeMinutes);
   const activityMinutes = Number(log.activityMinutes);

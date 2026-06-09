@@ -14,6 +14,7 @@ export function DailyLogForm({
     dailyLog,
     isSaving,
     saveError,
+    studyInputRef,
     onLogChange,
     onSubmit,
 }: DailyLogFormProps) {
@@ -24,6 +25,7 @@ export function DailyLogForm({
           <label htmlFor="study-hours">Study hours</label>
 
           <input
+          ref={studyInputRef}
           id="study-hours"
           name="studyHours"
           type="number"
