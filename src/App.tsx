@@ -3,6 +3,7 @@ import { supabase } from "./lib/supabase";
 import {type DailyLog, type SavedDailyLog} from "./types";
 import {DailyLogForm} from "./components/DailyLogForm";
 import {LogHistory} from "./components/LogHistory";
+import { WellbeingProfile } from "./components/WellbeingProfile";
 
 const emptyDailyLog: DailyLog = {
   studyHours: "",
@@ -122,6 +123,8 @@ export default function App() {
     <main>
       <h1>My Life Index</h1>
       <p>Log your day and earn XP for positive habits.</p>
+
+      <WellbeingProfile />
 
       <DailyLogForm
         dailyLog={dailyLog}

@@ -1,0 +1,227 @@
+.wellbeing-profile {
+  --profile-accent: #78f1d4;
+  --profile-text: #eef2ff;
+  --profile-muted: #aebbd1;
+  --profile-divider: #344058;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.25fr);
+  align-items: center;
+  gap: 1.4rem clamp(1.15rem, 3vw, 2.25rem);
+  margin: 1.75rem clamp(0.75rem, 3vw, 2rem);
+  padding: clamp(1rem, 3.5vw, 2.35rem);
+  border: 1px solid var(--profile-divider);
+  border-radius: 1.5rem;
+  background: linear-gradient(125deg, #191b31, #111c2a);
+  color: var(--profile-text);
+  color-scheme: dark;
+  text-align: left;
+}
+
+.wellbeing-profile__summary {
+  display: grid;
+  align-content: center;
+  align-self: stretch;
+  padding-inline-end: clamp(1rem, 2.75vw, 2rem);
+  border-inline-end: 1px solid var(--profile-divider);
+  color: var(--profile-muted);
+  font-size: 0.9rem;
+}
+
+.wellbeing-profile__example {
+  justify-self: start;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: #223341;
+  color: var(--profile-accent);
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.wellbeing-profile h2 {
+  margin: 0.85rem 0 0.55rem;
+  color: var(--profile-text);
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  font-weight: 750;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.wellbeing-profile__average {
+  margin-block-start: 1.5rem;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid var(--profile-divider);
+}
+
+.wellbeing-profile__average-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-block: 0.3rem 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.wellbeing-profile__average-value strong {
+  color: var(--profile-text);
+  font-size: clamp(2.85rem, 6vw, 4.7rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.wellbeing-profile__meter,
+.wellbeing-profile__meter span {
+  height: 0.3rem;
+  border-radius: 999px;
+}
+
+.wellbeing-profile__meter {
+  background: var(--profile-divider);
+}
+
+.wellbeing-profile__meter span {
+  display: block;
+  background: var(--profile-accent);
+}
+
+.wellbeing-profile__chart {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: auto repeat(2, 1fr) auto;
+  align-items: center;
+  gap: 0.2rem 0.55rem;
+  margin: 0;
+}
+
+.wellbeing-profile__radar {
+  display: block;
+  grid-area: 2 / 2 / 4 / 3;
+  width: 100%;
+}
+
+.wellbeing-profile__grid-background {
+  fill: #111929;
+}
+
+.wellbeing-profile__grid-line,
+.wellbeing-profile__grid-edge {
+  fill: none;
+  stroke: #34445a;
+  stroke-width: 0.8;
+}
+
+.wellbeing-profile__grid-edge {
+  stroke: #5b6c84;
+}
+
+.wellbeing-profile__shape {
+  fill: #41d6c3;
+  fill-opacity: 0.24;
+  stroke: var(--profile-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.wellbeing-profile__point {
+  fill: var(--profile-accent);
+  stroke: #142331;
+  stroke-width: 1.1;
+}
+
+.wellbeing-profile__mobile-key,
+.wellbeing-profile__domain-key {
+  display: none;
+}
+
+.wellbeing-profile__domains {
+  display: contents;
+}
+
+.wellbeing-profile__domain {
+  display: grid;
+  gap: 0.16rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.92rem);
+  font-weight: 600;
+  line-height: 1.24;
+}
+
+.wellbeing-profile__domain strong {
+  color: var(--profile-accent);
+  font-size: 1.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.wellbeing-profile__domain:nth-child(1) { grid-area: 1 / 2; text-align: center; }
+.wellbeing-profile__domain:nth-child(2) { grid-area: 2 / 3; }
+.wellbeing-profile__domain:nth-child(3) { grid-area: 3 / 3; }
+.wellbeing-profile__domain:nth-child(4) { grid-area: 4 / 2; text-align: center; }
+.wellbeing-profile__domain:nth-child(5) { grid-area: 3 / 1; text-align: right; }
+.wellbeing-profile__domain:nth-child(6) { grid-area: 2 / 1; text-align: right; }
+
+.wellbeing-profile__footer {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  padding-block-start: 0.7rem;
+  border-block-start: 1px solid var(--profile-divider);
+  color: var(--profile-muted);
+  font-size: 0.75rem;
+}
+
+.wellbeing-profile__footer a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+@media (max-width: 52rem) {
+  .wellbeing-profile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wellbeing-profile__summary {
+    padding-inline-end: 0;
+    border-inline-end: 0;
+  }
+
+  .wellbeing-profile__chart {
+    width: 100%;
+    max-width: 36rem;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 34rem) {
+  .wellbeing-profile__chart {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 0.7rem;
+  }
+
+  .wellbeing-profile__radar {
+    grid-area: auto / 1 / auto / -1;
+    width: min(100%, 17rem);
+    justify-self: center;
+  }
+
+  .wellbeing-profile__domain:nth-child(n) {
+    grid-area: auto;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-self: start;
+    column-gap: 0.35rem;
+    text-align: left;
+  }
+
+  .wellbeing-profile__domain-key {
+    display: block;
+    grid-row: span 2;
+    color: var(--profile-muted);
+  }
+
+  .wellbeing-profile__mobile-key {
+    display: block;
+    fill: var(--profile-muted);
+    font-size: 9px;
+    font-weight: 650;
+  }
+}
